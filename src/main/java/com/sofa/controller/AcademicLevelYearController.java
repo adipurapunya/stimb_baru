@@ -20,7 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sofa.model.tahunakademik.LevelAcademicYear;
 import com.sofa.service.LevelAcademicYearService;
 
-
+// by adipura
 @Controller
 public class AcademicLevelYearController 
 {
