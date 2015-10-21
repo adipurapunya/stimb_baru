@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sofa.model.stimb2.MasterKurikulum;
 import com.sofa.dao.MasterKurikulumDao;
-import com.sofa.model.kurikulum.MasterKurikulum;
 import com.sofa.service.MasterKurikulumService;
 
 

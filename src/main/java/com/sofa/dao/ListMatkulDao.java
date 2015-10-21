@@ -2,7 +2,7 @@ package com.sofa.dao;
 
 import java.util.List;
 
-import com.sofa.model.kurikulum.ListMatakuliah;
+import com.sofa.model.stimb2.ListMatakuliah;
 
 public interface ListMatkulDao 
 {
@@ -12,4 +12,5 @@ public interface ListMatkulDao
 	ListMatakuliah find(int listMatakuliahId);
 	List<ListMatakuliah> getAllListMatakuliah();
 	List<ListMatakuliah> getAllListMatakuliahByIdKurikulum(int kurikulumId);
+	List<ListMatakuliah> getAllListMatakuliahById(int id);
 }

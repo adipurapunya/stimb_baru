@@ -7,8 +7,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.sofa.model.stimb2.MasterKurikulum;
 import com.sofa.dao.MasterKurikulumDao;
-import com.sofa.model.kurikulum.MasterKurikulum;;
 
 @Repository
 public class MasterKurikulumDaoImpl implements MasterKurikulumDao {

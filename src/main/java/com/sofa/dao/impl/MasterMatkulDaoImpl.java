@@ -7,8 +7,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.sofa.model.stimb2.MasterMatakuliah;
 import com.sofa.dao.MasterMatkulDao;
-import com.sofa.model.kurikulum.MasterMatakuliah;
 
 @Repository
 public class MasterMatkulDaoImpl implements MasterMatkulDao {

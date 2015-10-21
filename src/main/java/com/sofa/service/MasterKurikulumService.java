@@ -2,7 +2,7 @@ package com.sofa.service;
 
 import java.util.List;
 
-import com.sofa.model.kurikulum.MasterKurikulum;
+import com.sofa.model.stimb2.MasterKurikulum;
 
 public interface MasterKurikulumService
 {

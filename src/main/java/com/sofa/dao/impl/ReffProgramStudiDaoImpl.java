@@ -7,8 +7,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import com.sofa.model.stimb2.ReffProgramStudi;
 import com.sofa.dao.ReffProgramStudiDao;
-import com.sofa.model.kurikulum.ReffProgramStudi;
 
 @Repository
 public class ReffProgramStudiDaoImpl implements ReffProgramStudiDao {

@@ -8,8 +8,8 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.sofa.dao.UserDao;
 import com.sofa.model.account.User;
+import com.sofa.dao.UserDao;
 @Repository
 public class UserDaoImpl implements UserDao {
 	@Autowired

@@ -12,12 +12,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sofa.dao.UserDao;
 import com.sofa.model.account.Role;
 import com.sofa.model.account.User;
 import com.sofa.model.account.UserStatus;
-@Service("userDetailsService")
+import com.sofa.dao.UserDao;
 
+@Service("userDetailsService")
 public class UserDetailsServiceImpl implements UserDetailsService 
 {
 

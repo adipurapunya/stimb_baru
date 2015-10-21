@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import com.sofa.model.kurikulum.ReffProgramStudi;
+import com.sofa.model.stimb2.ReffProgramStudi;
 import com.sofa.service.ReffProgramStudiService;
 
 

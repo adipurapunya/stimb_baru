@@ -5,8 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.sofa.model.stimb2.ListMatakuliah;
 import com.sofa.dao.ListMatkulDao;
-import com.sofa.model.kurikulum.ListMatakuliah;
 import com.sofa.service.ListMatkulService;
 
 
@@ -50,6 +51,12 @@ public class ListMatkulServiceImpl implements ListMatkulService {
 	public List<ListMatakuliah> getAllListMatakuliahByIdKurikulum(int kurikulumId)
 	{
 		return listMatkulDao.getAllListMatakuliahByIdKurikulum(kurikulumId);
+	}
+
+	@Transactional
+	public List<ListMatakuliah> getAllListMatakuliahById(int Id) 
+	{
+		return listMatkulDao.getAllListMatakuliahById(Id);
 	}
 
 }

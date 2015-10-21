@@ -2,7 +2,7 @@ package com.sofa.dao;
 
 import java.util.List;
 
-import com.sofa.model.kurikulum.ReffProgramStudi;
+import com.sofa.model.stimb2.ReffProgramStudi;
 
 public interface ReffProgramStudiDao {
 	void addReffProgramStudi(ReffProgramStudi reffProgramStudi);

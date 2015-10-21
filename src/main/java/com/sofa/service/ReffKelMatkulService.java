@@ -2,7 +2,7 @@ package com.sofa.service;
 
 import java.util.List;
 
-import com.sofa.model.kurikulum.ReffKelompokMatakuliah;;
+import com.sofa.model.stimb2.ReffKelompokMatakuliah;;
 
 public interface ReffKelMatkulService
 {

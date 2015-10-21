@@ -1,7 +1,9 @@
 package com.sofa.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,13 +20,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sofa.model.kurikulum.ListMatakuliah;
-import com.sofa.model.kurikulum.MasterKurikulum;
-import com.sofa.model.kurikulum.MasterMatakuliah;
+import com.sofa.model.stimb2.AktifitasPerkuliahan;
+import com.sofa.model.stimb2.ListMatakuliah;
+import com.sofa.model.stimb2.ListMatakuliahForm;
+import com.sofa.model.stimb2.MasterKurikulum;
+import com.sofa.model.stimb2.ListSemesterPerkuliahan;
 import com.sofa.service.ListMatkulService;
 import com.sofa.service.MasterKurikulumService;
 import com.sofa.service.MasterMatkulService;
 import com.sofa.service.ReffProgramStudiService;
+import com.sofa.service.ListAktivasiService;
 
 
 @Controller
@@ -42,6 +47,9 @@ public class MasterKurikulumController
 	
 	@Autowired
 	private ListMatkulService listMatkulService;
+	
+	@Autowired
+	private ListAktivasiService listAktivasiService;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) 
@@ -93,9 +101,18 @@ public class MasterKurikulumController
 	{
 		ModelAndView mav = new ModelAndView("detailkurikulumview");
 		MasterKurikulum kurikulum = masterKurikulumService.getMasterKurikulum(id);
-		mav.addObject("detailkurikulumview", kurikulum);
+		ListMatakuliahForm listMatakuliahForm = new ListMatakuliahForm();
+		listMatakuliahForm.setMasterMatakuliahs(masterMatkulService.getAllMasterMatakuliah());
+		listMatakuliahForm.setListMatakuliahs(new ArrayList<ListMatakuliah>());
+		
+		mav.addObject("detailkurikulumview", listMatakuliahForm);
+		//map.put("listMatakuliahForm", listMatakuliahForm);
 		map.put("prodiList", reffProgramStudiService.getAllReffProgramStudi());
+		map.put("getId",kurikulum);
 		map.put("listmatkulList", listMatkulService.getAllListMatakuliahByIdKurikulum(id));
+		map.put("matkulList", masterMatkulService.getAllMasterMatakuliah());
+		map.put("kurikulumList",kurikulum);
+		//System.out.println("Hasil Cuy : "+listMatkulService.getAllListMatakuliahByIdKurikulum(id));
 		return mav;
 	}
 	
@@ -119,7 +136,7 @@ public class MasterKurikulumController
 	}
 	//===========================================================
 	@RequestMapping(value="/kurikulum.do", method=RequestMethod.POST)
-	public String doActions(@ModelAttribute MasterKurikulum kurikulum,@ModelAttribute ListMatakuliah listMatakuliah, BindingResult result, 
+	public String doActions(@ModelAttribute MasterKurikulum kurikulum,@ModelAttribute("detailkurikulumview") ListMatakuliahForm listMatakuliahform, BindingResult result, 
 			@RequestParam String action, Map<String, Object> map, SessionStatus status, ModelMap model)
 	{
 		MasterKurikulum kurikulumResult = new MasterKurikulum();
@@ -127,6 +144,12 @@ public class MasterKurikulumController
 		{	//only in Java7 you can put String in switch 
 				case "add":	
 					masterKurikulumService.add(kurikulum);
+					
+					ListSemesterPerkuliahan listSemesterPerkuliahan = new ListSemesterPerkuliahan();
+					listSemesterPerkuliahan.setMasterKurikulum(kurikulum);
+					listSemesterPerkuliahan.setStatusSemester(false);
+					
+					listAktivasiService.add(listSemesterPerkuliahan);
 					status.setComplete();
 					kurikulumResult = kurikulum;
 					model.addAttribute("kurikulum",new MasterKurikulum());
@@ -138,10 +161,53 @@ public class MasterKurikulumController
 					model.addAttribute("kurikulum",new MasterKurikulum());
 					break;
 				case "add matkul":	
-					listMatkulService.add(listMatakuliah);
+					//listMatkulService.add(listMatakuliah);
+					//status.setComplete();
+					//kurikulumResult = kurikulum;
+					//model.addAttribute("kurikulum",new MasterKurikulum());
+					break;
+				case "add kuliah":	
+					
+					//List<MasterMatakuliah> masterMatakuliahs = listMatakuliahform.getMasterMatakuliahs();
+					List<ListMatakuliah> listMatakuliahs = listMatakuliahform.getListMatakuliahs();
+					
+					if(listMatakuliahs!=null)
+					{
+						//System.out.println("Ada List");
+						for(ListMatakuliah a : listMatakuliahs)
+						{
+							
+							try 
+							{
+								if(a.getMataKuliahWajib()==true && a.getId()==null)
+								{
+									listMatkulService.add(a);
+									System.out.println("Wowww2");
+								}
+								if(a.getId()!=null)
+								{
+									System.out.println("Wowww3 "+a.getId());
+									ListMatakuliah listMatakuliahX = listMatkulService.getListMatakuliah(Integer.parseInt(String.valueOf(a.getId())));
+									if(listMatakuliahX.equals(""))
+									{
+										//a.setMataKuliahWajib(true);
+										//listMatkulService.delete(Integer.parseInt(String.valueOf(a.getId())));
+										//listMatkulService.edit(a);
+										System.out.println("Wowww3");
+									}
+									
+								}
+								
+							} 
+							catch (Exception e)
+							{
+							}
+						}
+					}
+					
 					status.setComplete();
-					kurikulumResult = kurikulum;
 					model.addAttribute("kurikulum",new MasterKurikulum());
+					
 					break;
 				case "edit":
 					masterKurikulumService.edit(kurikulum);
@@ -160,10 +226,12 @@ public class MasterKurikulumController
 					model.addAttribute("prodi",new MasterKurikulum());
 					break;
 		}
-		map.put("kurikulumview", kurikulumResult);
-		map.put("kurikulumList", masterKurikulumService.getAllMasterKurikulum());
-		map.put("prodiList", reffProgramStudiService.getAllReffProgramStudi());
-		return "kurikulumview";
+		
+			map.put("kurikulumview", kurikulumResult);
+			map.put("kurikulumList", masterKurikulumService.getAllMasterKurikulum());
+			map.put("prodiList", reffProgramStudiService.getAllReffProgramStudi());
+			return "kurikulumview";
+		
 	}
 	
 	

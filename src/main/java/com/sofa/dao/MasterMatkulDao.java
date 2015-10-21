@@ -2,7 +2,7 @@ package com.sofa.dao;
 
 import java.util.List;
 
-import com.sofa.model.kurikulum.MasterMatakuliah;
+import com.sofa.model.stimb2.MasterMatakuliah;
 
 public interface MasterMatkulDao 
 {

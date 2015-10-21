@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import com.sofa.model.stimb2.ReffProgramStudi;
 import com.sofa.dao.ReffProgramStudiDao;
-import com.sofa.model.kurikulum.ReffProgramStudi;
 import com.sofa.service.ReffProgramStudiService;
 
 @Service

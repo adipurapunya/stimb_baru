@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
-import com.sofa.model.kurikulum.MasterMatakuliah;
+
+import com.sofa.model.stimb2.MasterMatakuliah;
 import com.sofa.service.MasterMatkulService;
 import com.sofa.service.ReffKelMatkulService;
+import com.sofa.service.ReffProgramStudiService;
 
 
 @Controller
@@ -31,6 +33,9 @@ public class MasterMatkulController
 	
 	@Autowired
 	private ReffKelMatkulService reffKelMatkulService;
+	
+	@Autowired
+	private ReffProgramStudiService reffProgramStudiService;
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) 
@@ -47,6 +52,7 @@ public class MasterMatkulController
 		map.put("matkul", matkul);
 		map.put("matkulList", masterMatkulService.getAllMasterMatakuliah());
 		map.put("kelompokList", reffKelMatkulService.getAllKelompokMatakuliah());
+		map.put("prodiList", reffProgramStudiService.getAllReffProgramStudi());
 		return "matkulview";
 	}
 	
@@ -57,6 +63,7 @@ public class MasterMatkulController
 		MasterMatakuliah matkul = masterMatkulService.getMasterMatakuliah(id);
 		mav.addObject("matkulviewEdit", matkul);
 		map.put("kelompokList", reffKelMatkulService.getAllKelompokMatakuliah());
+		map.put("prodiList", reffProgramStudiService.getAllReffProgramStudi());
 		return mav;
 	}
 	

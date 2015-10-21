@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.sofa.model.kurikulum.ListMatakuliah;
+import com.sofa.model.stimb2.ListMatakuliah;
 import com.sofa.service.ListMatkulService;
 import com.sofa.service.MasterKurikulumService;
 import com.sofa.service.MasterMatkulService;

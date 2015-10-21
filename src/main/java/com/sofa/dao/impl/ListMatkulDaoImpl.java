@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.sofa.dao.ListMatkulDao;
-import com.sofa.model.kurikulum.ListMatakuliah;
-import com.sofa.model.kurikulum.MasterMatakuliah;
+import com.sofa.model.stimb2.ListMatakuliah;
 
 @Repository
 public class ListMatkulDaoImpl implements ListMatkulDao {
@@ -54,5 +53,15 @@ public class ListMatkulDaoImpl implements ListMatkulDao {
 		criteria.add(Restrictions.eq("masterKurikulum.id", Long.parseLong(String.valueOf(kurikulumId))));		
 		return (List<ListMatakuliah>) criteria.list();
 	}
+
+	@Override
+	public List<ListMatakuliah> getAllListMatakuliahById(int id) 
+	{
+		Criteria criteria = session.getCurrentSession().createCriteria(ListMatakuliah.class);
+		criteria.add(Restrictions.eq("id", Long.parseLong(String.valueOf(id))));		
+		return (List<ListMatakuliah>) criteria.list();
+	}
+	
+	
 
 }

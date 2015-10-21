@@ -24,7 +24,22 @@
 	<context:annotation-config />
 	<context:component-scan base-package="com.sofa" />
 	
+
+	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/> 
+
+	<bean id="jacksonMessageChanger" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"> 
+    	<property name="supportedMediaTypes" value="application/json"/> 
+	</bean> 
+	
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"> 
+    <property name="messageConverters"> 
+        <util:list id="beanList"> 
+            <ref bean="jacksonMessageChanger"/> 
+        </util:list> 
+    </property> 
+	</bean> 
 		
+			
 	
 	<!-- To prevent browser's back button on displaying secured resource after logout -->
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">

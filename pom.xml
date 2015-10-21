@@ -132,6 +132,24 @@
 		<type>jar</type>		
 	</dependency>
 	
+	<dependency>
+		<groupId>org.json</groupId>
+		<artifactId>json</artifactId>
+		<version>20150729</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-mapper-asl</artifactId>
+		<version>1.9.13</version>
+	</dependency>
+	
+	<dependency><!-- jackson -->
+        <groupId>org.codehaus.jackson</groupId>
+        <artifactId>jackson-mapper-asl</artifactId>
+        <version>1.4.2</version>
+    </dependency>
+	
 </dependencies>
   
   
