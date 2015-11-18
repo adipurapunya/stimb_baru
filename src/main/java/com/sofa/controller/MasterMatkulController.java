@@ -113,7 +113,8 @@ public class MasterMatkulController
 		map.put("matkulview", matkulResult);
 		map.put("matkulList", masterMatkulService.getAllMasterMatakuliah());
 		map.put("kelompokList", reffKelMatkulService.getAllKelompokMatakuliah());
-		return "matkulview";
+		
+		return "redirect:matkul";
 	}
 	
 	

@@ -8,11 +8,14 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.sofa.model.stimb2.ListSemesterPerkuliahan;
 import com.sofa.model.stimb2.ReffProgramStudi;
+import com.sofa.model.stimb2.ReffTahunAjaran;
 import com.sofa.dao.ReffProgramStudiDao;
 
 @Repository
 public class ReffProgramStudiDaoImpl implements ReffProgramStudiDao {
+	
 	@Autowired
 	private SessionFactory session;
 	
